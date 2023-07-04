@@ -20,7 +20,6 @@ public class TransposColumnRepository {
             columnas = (int)Math.ceil(aux);
             text = Cifrar(columnas, renglones, text);
             return "El texto cifrado es: " + text;
-
         }
     }
 
