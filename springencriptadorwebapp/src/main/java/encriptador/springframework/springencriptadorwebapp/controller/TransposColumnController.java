@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/columncrypt")
+@RequestMapping("/crypt")
 public class TransposColumnController {
     @Autowired
     private TransposColumnService service;
 
-    @GetMapping("{text}/{algorithm}/{rowsNumber}")
+    @GetMapping("{text}/{algoritmo}/{rowsNumber}")
     @ResponseStatus(HttpStatus.OK)
-    public String cryptText(@PathVariable String text, String algorithm, int rowsNumber){
+    public String cryptText(@PathVariable String text, @PathVariable int rowsNumber){
         return service.crypt(text, rowsNumber);
     }
 
