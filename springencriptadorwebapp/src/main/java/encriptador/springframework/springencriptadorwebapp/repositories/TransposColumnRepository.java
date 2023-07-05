@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 public class TransposColumnRepository {
     static char arrayCifrar[][];
 
-    public String cryptText(String text){
-        int renglones = 4, columnas;
+    public String cryptText(String text, int rowsNumber){
+        int columnas;
         float aux;
         if (text.length() > 255){
             return "El texto es demasiado grande";
@@ -16,9 +16,9 @@ public class TransposColumnRepository {
             text = text.toUpperCase();
             text = text.replaceAll(" ", "" );
             //AQUI EMPIEZA CALCULO DE COLUMNAS, RENGLONES DEBERIA SER 3,4 O 5
-            aux = (float)text.length() / (float)renglones;
+            aux = (float)text.length() / (float)rowsNumber;
             columnas = (int)Math.ceil(aux);
-            text = Cifrar(columnas, renglones, text);
+            text = Cifrar(columnas, rowsNumber, text);
             return "El texto cifrado es: " + text;
         }
     }

@@ -9,7 +9,7 @@ public class TransposColumnService {
     @Autowired
     private TransposColumnRepository transposColumnRepository;
 
-    public String crypt(String text){
-        return transposColumnRepository.cryptText(text);
+    public String crypt(String text, int rowsNumber){
+        return transposColumnRepository.cryptText(text, rowsNumber);
     }
 }

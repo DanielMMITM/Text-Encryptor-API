@@ -11,10 +11,10 @@ public class TransposColumnController {
     @Autowired
     private TransposColumnService service;
 
-    @GetMapping("{text}")
+    @GetMapping("{text}/{algorithm}/{rowsNumber}")
     @ResponseStatus(HttpStatus.OK)
-    public String cryptText(@PathVariable String text){
-        return service.crypt(text);
+    public String cryptText(@PathVariable String text, String algorithm, int rowsNumber){
+        return service.crypt(text, rowsNumber);
     }
 
 //    @GetMapping("{text}")
