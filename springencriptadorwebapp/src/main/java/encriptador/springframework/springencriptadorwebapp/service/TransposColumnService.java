@@ -1,15 +1,19 @@
 package encriptador.springframework.springencriptadorwebapp.service;
 
-import encriptador.springframework.springencriptadorwebapp.repositories.TransposColumnRepository;
+import encriptador.springframework.springencriptadorwebapp.repositories.CryptTextRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransposColumnService {
     @Autowired
-    private TransposColumnRepository transposColumnRepository;
+    private CryptTextRepository cryptTextRepository;
 
-    public String crypt(String text, int rowsNumber){
-        return transposColumnRepository.cryptText(text, rowsNumber);
+    public String columnCrypt(String text, int rowsNumber){
+        return cryptTextRepository.cryptByColumn(text, rowsNumber);
+    }
+
+    public String keyCrypt(String text, String key){
+        return cryptTextRepository.cryptByKey(text, key);
     }
 }
