@@ -3,7 +3,7 @@ package encriptador.springframework.springencriptadorwebapp.repositories;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CryptTextRepository {
+public class EncryptTextRepository {
     static char arrayCifrar[][];
 
     public String cryptByColumn(String text, int rowsNumber){
@@ -73,6 +73,7 @@ public class CryptTextRepository {
     private static String keyCryptAlgorithm(int cols, int rows, String text, String key){
         arrayCifrar = new char [rows][cols];
         int numChar = 0;
+        String cryptedText ="";
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if(i == 0){
@@ -113,13 +114,13 @@ public class CryptTextRepository {
         // IMPRIMIR LA MATRIZ EN EL ORDEN CORRECTO PARA QUE ESTE CIFRADO
         for (int j = 0; j < ordenPosChar.length; j++) {
             for (int i = 1; i < rows; i++) {
-                text = text + (arrayCifrar[i][ordenPosChar[j]]);
+                cryptedText = cryptedText + (arrayCifrar[i][ordenPosChar[j]]);
             }
             if(j < ordenPosChar.length-1){
-                text = text + " ";
+                cryptedText = cryptedText + " ";
             }
         }
-        return text;
+        return cryptedText;
     }
 
     private static String orderKey(String key){
