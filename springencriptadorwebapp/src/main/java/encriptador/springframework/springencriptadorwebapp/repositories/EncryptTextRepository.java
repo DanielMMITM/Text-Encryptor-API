@@ -18,7 +18,7 @@ public class EncryptTextRepository {
             //AQUI EMPIEZA CALCULO DE COLUMNAS, RENGLONES DEBERIA SER 3,4 O 5
             aux = (float)text.length() / (float)rows;
             columnas = (int)Math.ceil(aux);
-            return "El texto cifrado es: " + columnCryptAlgorithm(columnas, rows, text);
+            return "El texto cifrado es: " + columnCryptAlgorithm(columnas, rows, text) + ". Con un total de " + columnas + " columnas";
         }
     }
 
