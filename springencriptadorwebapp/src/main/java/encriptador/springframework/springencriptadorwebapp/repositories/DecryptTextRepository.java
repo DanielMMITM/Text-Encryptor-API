@@ -2,12 +2,14 @@ package encriptador.springframework.springencriptadorwebapp.repositories;
 
 import org.springframework.stereotype.Repository;
 
+import static encriptador.springframework.springencriptadorwebapp.repositories.EncryptTextRepository.orderKey;
+
 @Repository
 public class DecryptTextRepository {
     static char arrayCifrar[][];
 
     public String decryptByColumn(String text, int columnsNumber){
-        int columns = 0, rows = 0;
+        int rows = 0;
         float aux = 0;
         if(text.length() > 255){
             return "El texto es demasiado grande";
@@ -15,14 +17,31 @@ public class DecryptTextRepository {
         else{
             text = text.toUpperCase();
             text = text.replace(" ", "");
-            aux = (float) text.length() / (float) columns;
+            aux = (float) text.length() / (float) columnsNumber;
             rows = (int) Math.ceil(aux);
-            return "El texto descifrado es: " + decryptColumnAlgorithm(columns, rows, text);
+            return "El texto descifrado es: " + decryptColumnAlgorithm(columnsNumber, rows, text);
         }
     }
 
     public String decryptByKey(String text, String key){
-        return "hola2";
+        if(text.length() > 255){
+            return "El texto es demasiado grande";
+        }
+        else{
+            text = text.toUpperCase();
+            text = text.replace(" ", "");
+            if (key.length() > 50){
+                return "La clave es demasiado grande";
+            }
+            else{
+                key = key.toUpperCase();
+                key = key.replaceAll(" ", "");
+                float aux = (float)text.length() / (float)key.length();
+                int rows = (int)Math.ceil(aux);
+                return "El texto descifrado es: " + decryptKeyAlgorithm(key.length(), rows, text, key);
+            }
+
+        }
     }
 
     private static String decryptColumnAlgorithm(int col, int ren, String texto) {
@@ -50,5 +69,49 @@ public class DecryptTextRepository {
             }
         }
         return textDescifrado;
+    }
+
+    private static String decryptKeyAlgorithm(int cols, int rows, String text, String key){
+        String newText = "";
+        int numChar = 0;
+        arrayCifrar = new char [rows][cols];
+
+        String claveOrdenada = orderKey(key);
+
+        int[] ordenPosChar = new int[claveOrdenada.length()];
+        for (int i = 0; i < claveOrdenada.length(); i++) {
+            for (int j = 0; j < claveOrdenada.length(); j++) {
+                if (claveOrdenada.charAt(i) == key.charAt(j)) {
+                    ordenPosChar[i] = j;
+                }
+            }
+        }
+
+        char[][] arrayCifrar = new char[rows][cols];
+        for (int j = 0; j < cols; j++) {
+            for (int i = 0; i < rows; i++) {
+                if (numChar < text.length()) {
+                    arrayCifrar[i][ordenPosChar[j]] = text.charAt(numChar);
+                    numChar++;
+                }
+                else{
+                    arrayCifrar[i][ordenPosChar[j]] = '$';
+                }
+            }
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if(arrayCifrar[i][j] != '$'){
+                    newText = newText + arrayCifrar[i][j];
+                    System.out.print(arrayCifrar[i][j] + " ");
+                }
+                else{
+                    break;
+                }
+            }
+            System.out.println("");
+        }
+        return newText;
     }
 }

@@ -123,7 +123,7 @@ public class EncryptTextRepository {
         return cryptedText;
     }
 
-    private static String orderKey(String key){
+    protected static String orderKey(String key){
         char aux, orderArray[];
         String orderedKey = "";
         orderArray = new char [key.length()];
