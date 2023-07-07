@@ -110,7 +110,6 @@ public class DecryptTextRepository {
                     break;
                 }
             }
-            System.out.println("");
         }
         return newText;
     }
