@@ -19,7 +19,7 @@ public class DecryptTextRepository {
             text = text.replace(" ", "");
             aux = (float) text.length() / (float) columnsNumber;
             rows = (int) Math.ceil(aux);
-            return "The encrypted text is: " + decryptColumnAlgorithm(columnsNumber, rows, text);
+            return "The decrypted text is: " + decryptColumnAlgorithm(columnsNumber, rows, text);
         }
     }
 
@@ -38,7 +38,7 @@ public class DecryptTextRepository {
                 key = key.replaceAll(" ", "");
                 float aux = (float)text.length() / (float)key.length();
                 int rows = (int)Math.ceil(aux);
-                return "The encrypted text is: " + decryptKeyAlgorithm(key.length(), rows, text, key);
+                return "The decrypted text is: " + decryptKeyAlgorithm(key.length(), rows, text, key);
             }
 
         }
