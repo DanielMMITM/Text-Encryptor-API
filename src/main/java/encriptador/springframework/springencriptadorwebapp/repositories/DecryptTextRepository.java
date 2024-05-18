@@ -12,33 +12,33 @@ public class DecryptTextRepository {
         int rows = 0;
         float aux = 0;
         if(text.length() > 255){
-            return "El texto es demasiado grande";
+            return "The text is too long";
         }
         else{
             text = text.toUpperCase();
             text = text.replace(" ", "");
             aux = (float) text.length() / (float) columnsNumber;
             rows = (int) Math.ceil(aux);
-            return "El texto descifrado es: " + decryptColumnAlgorithm(columnsNumber, rows, text);
+            return "The encrypted text is: " + decryptColumnAlgorithm(columnsNumber, rows, text);
         }
     }
 
     public String decryptByKey(String text, String key){
         if(text.length() > 255){
-            return "El texto es demasiado grande";
+            return "The text is too long";
         }
         else{
             text = text.toUpperCase();
             text = text.replace(" ", "");
             if (key.length() > 50){
-                return "La clave es demasiado grande";
+                return "The key is too long";
             }
             else{
                 key = key.toUpperCase();
                 key = key.replaceAll(" ", "");
                 float aux = (float)text.length() / (float)key.length();
                 int rows = (int)Math.ceil(aux);
-                return "El texto descifrado es: " + decryptKeyAlgorithm(key.length(), rows, text, key);
+                return "The encrypted text is: " + decryptKeyAlgorithm(key.length(), rows, text, key);
             }
 
         }

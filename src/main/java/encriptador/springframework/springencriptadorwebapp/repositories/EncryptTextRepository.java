@@ -10,7 +10,7 @@ public class EncryptTextRepository {
         int rows = rowsNumber, columnas;
         float aux;
         if (text.length() > 255){
-            return "El texto es demasiado grande";
+            return "The text is too long";
         }
         else{
             text = text.toUpperCase();
@@ -18,26 +18,26 @@ public class EncryptTextRepository {
             //AQUI EMPIEZA CALCULO DE COLUMNAS, RENGLONES DEBERIA SER 3,4 O 5
             aux = (float)text.length() / (float)rows;
             columnas = (int)Math.ceil(aux);
-            return "El texto cifrado es: " + columnCryptAlgorithm(columnas, rows, text) + ". Con un total de " + columnas + " columnas";
+            return "The encrypted text is: " + columnCryptAlgorithm(columnas, rows, text) + ". With a total of " + columnas + " columns";
         }
     }
 
     public String cryptByKey(String text, String key){
         if (text.length() > 255){
-            return "El texto es demasiado grande";
+            return "The text is too long";
         }
         else{
             text = text.toUpperCase();
             text = text.replaceAll(" ", "");
             if(key.length() > 50){
-                return "La clave es demasiado grande";
+                return "The key is too long";
             }
             else{
                 key = key.toUpperCase();
                 key = key.replaceAll(" ", "");
                 float aux = (float)text.length() / (float)key.length();
                 int rows = (int)Math.ceil(aux);
-                return "El texto cifrado es el siguiente: " + keyCryptAlgorithm(key.length(), rows+1, text, key);
+                return "The encrypted text is: " + keyCryptAlgorithm(key.length(), rows+1, text, key);
             }
 
         }
@@ -99,9 +99,7 @@ public class EncryptTextRepository {
         }
         String orderedKey = orderKey(key);
 
-        System.out.println("\n\nEl texto quedara cifrado con respecto a este orden alfabetico: " + orderedKey);
-
-        // COLOCACION DE ORDEN NUEVO PARA IMPRIMIR LA FRASE CIFRADA
+        //SET NEW ORDER TO DISPLAY THE ENCRYPTED SENTENCE
         int[] ordenPosChar = new int[orderedKey.length()];
         for (int i = 0; i < orderedKey.length(); i++) {
             for (int j = 0; j < orderedKey.length(); j++) {
@@ -111,7 +109,7 @@ public class EncryptTextRepository {
             }
         }
 
-        // IMPRIMIR LA MATRIZ EN EL ORDEN CORRECTO PARA QUE ESTE CIFRADO
+        // PRINT THE MATRIX IN THE CORRECT ORDER TO ENCRYPT
         for (int j = 0; j < ordenPosChar.length; j++) {
             for (int i = 1; i < rows; i++) {
                 cryptedText = cryptedText + (arrayCifrar[i][ordenPosChar[j]]);
