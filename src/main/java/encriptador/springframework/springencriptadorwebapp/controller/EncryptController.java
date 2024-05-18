@@ -22,10 +22,4 @@ public class EncryptController {
     public String cryptByKey(@RequestParam(value = "text") String text, @RequestParam(value = "key") String key){
         return service.keyCrypt(text, key);
     }
-
-//    @GetMapping("{text}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<String> cryptText(){
-//        return new ResponseEntity<>(service.crypt(), HttpStatus.OK);
-//    }
 }
